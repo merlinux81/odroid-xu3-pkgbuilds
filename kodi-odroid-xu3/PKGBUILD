@@ -15,15 +15,15 @@
 #   -changed odroid-libgl to 'odroid-xu3-libgl-x11'
 #   -change $pkgname to $pkgbase for licenses install
 #
-#	TO DO: -include udev rules file (50-mali.rules)
-#		   -Sanity check for wronk lib linking for mali
-#			in the mean time, delete everything except libmali.so from /usr/lib/mali-egl
-#           and make sure every single /usr/lib/libGLES* or /usr/lib/libEGL* point to libmali.so in /usr/lib/mali-egl
-#			/usr/lib/libMali.so should also point to /usr/lib/mali-egl/libmali.so (ldconfig -p |grep lib... to check the symlinks)
-#			NOT FOLLOWING THIS STEP AND ld MIGHT FAIL AT THE END OF THE BUILD!
-#		    -you must be part of certain groups (video audio ...) TO BE COMPLETED
-#			-add kodi.service and a default kodi user 
-#			-and last convert from autoconf to cmake. Sick of the warnings....
+#	TO DO:  -include udev rules file (50-mali.rules)
+#		-Sanity check for wronk lib linking for mali (best solution is to fix to fix odroid-xu3-libgl or add an extra pkg as gripped did)
+#		in the mean time, delete everything except libmali.so from /usr/lib/mali-egl
+#           	and make sure every single /usr/lib/libGLES* or /usr/lib/libEGL* point to libmali.so in /usr/lib/mali-egl
+#		/usr/lib/libMali.so should also point to /usr/lib/mali-egl/libmali.so (ldconfig -p |grep lib... to check the symlinks)
+#		NOT FOLLOWING THIS STEP AND ld MIGHT FAIL AT THE END OF THE BUILD!
+#		-you must be part of certain groups (video audio ...) TO BE COMPLETED
+#		-add kodi.service and a default kodi user 
+#		-and last convert from autoconf to cmake. Sick of the warnings....
 
 buildarch=4
 _prefix=/usr
