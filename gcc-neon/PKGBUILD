@@ -15,6 +15,7 @@
 # MODIFIED by merlinux <@archlinuxarm/odroid forums/github>
 #             atrotet <@archlinux forums> 
 #	-added march.patch(credit gripped) and pr70473.patch(fix out of memory error on armv7)
+#	-added neon mfpu if ARCH=armv7h
 noautobuild=1
 
 pkgname=('gcc-neon' 'gcc-libs-neon' 'gcc-fortran-neon' 'gcc-objc-neon' 'gcc-go-neon')
