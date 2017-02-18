@@ -14,6 +14,7 @@
 #	-committed to release 17 of owersun repo
 #   -changed odroid-libgl to 'odroid-xu3-libgl-x11'
 #   -change $pkgname to $pkgbase for licenses install
+#	-removed cflags (unecessary if libraries are linked correctely)
 #
 #	TO DO:  -include udev rules file (50-mali.rules)
 #		-Sanity check for wronk lib linking for mali (best solution is to fix to fix odroid-xu3-libgl or add an extra pkg as gripped did)
@@ -59,12 +60,6 @@ prepare() {
 
 build() {
   cd xbmc-${_commit}
-
-
-  CPPFLAGS="-I/usr/include -I/usr/include/GLES2"
-  CFLAGS="-mcpu=cortex-a15.cortex-a7 -mfloat-abi=hard -mfpu=neon-vfpv4 -O2 -pipe -ffast-math -ftree-vectorize -mvectorize-with-neon-quad -fstack-protector --param=ssp-buffer-size=4"
-  CXXFLAGS=$CFLAGS
-  LDFLAGS+=" -L/usr/lib/mali-egl"
 
   # Bootstrapping
   MAKEFLAGS=-j1 ./bootstrap
