@@ -1,0 +1,26 @@
+[ -f etc/chromium-browser/default ] && _default='etc/chromium-browser/default'
+[ -f etc/chromium/default ] && _default='etc/chromium/default'
+
+instructions() {
+
+  /bin/cat << EOF
+
+Disable all other flash plugins:
+Type chrome://plugins/ in the adress bar and press Enter
+Click on Details button on the top right
+Click on Disable near all the Flash plugins except the first one
+Type chrome://flags/ in the adress bar and press Enter
+Enable "Override software rendering list" and restart chromium
+
+EOF
+
+}
+
+
+post_install() {
+
+
+  instructions
+
+}
+

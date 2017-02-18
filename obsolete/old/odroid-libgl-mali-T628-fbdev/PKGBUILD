@@ -1,0 +1,54 @@
+# ODROID Mali GL Driver
+# Maintainer: gripped - forum.odroid.com
+
+buildarch=4
+
+pkgname=odroid-libgl-mali-T628-fbdev
+pkgver=r5p1
+pkgrel=2
+arch=('armv7h')
+pkgdesc="ODROID Mali GL Driver"
+url="http://malideveloper.arm.com/"
+license=('Proprietary')
+provides=('libegl' 'libgles' 'libMali' 'odroid-libgl')
+conflicts=('odroid-libgl' 'odroid-libgl-mali-T628-x11')
+source=('https://raw.githubusercontent.com/mdrjr/5422_mali/master/fbdev/libmali.so'
+	'pkgconfigs.tar.xz'
+	'fbdev_window.h'
+	'50-mali.rules')
+md5sums=('264e9535d96d0ee7ffc1e778c5ae8986'                                                                                           
+         'cd0f0bd2fe709e880ab3763ed49bab8c'                                                                                           
+         'b81365e9ec463820ee41d67225fb2379'                                                                                           
+         '058d139371185145bcc7dfd5b33413d6')
+
+
+package() {
+    install -d -m 0755 ${pkgdir}/usr/lib
+
+    cd ${srcdir}
+    install -m 0755 libmali.so ${pkgdir}/usr/lib
+    
+    cd ${srcdir}
+    mkdir -p ${pkgdir}/usr/lib
+    cp -av pkgconfig ${pkgdir}/usr/lib/pkgconfig
+    chmod 644 ${pkgdir}/usr/lib/pkgconfig/*
+    install -d -m 0755 ${pkgdir}/include/EGL
+    install -m 0755 fbdev_window.h ${pkgdir}/include/EGL
+
+    install -d -m 0755 ${pkgdir}/usr/lib/udev/rules.d
+    install -m 0644 50-mali.rules ${pkgdir}/usr/lib/udev/rules.d/50-mali.rules
+
+    cd ${pkgdir}/usr/lib
+    ln -s libmali.so libEGL.so
+    ln -s libmali.so libEGL.so.1
+    ln -s libmali.so libEGL.so.1.4
+    ln -s libmali.so libGLESv1_CM.so
+    ln -s libmali.so libGLESv1_CM.so.1
+    ln -s libmali.so libGLESv1_CM.so.1.1
+    ln -s libmali.so libGLESv2.so
+    ln -s libmali.so libGLESv2.so.2
+    ln -s libmali.so libGLESv2.so.2.0
+    ln -s libmali.so libOpenCL.so
+    ln -s libmali.so libOpenCL.so.1
+    ln -s libmali.so libOpenCL.so.1.0
+}
